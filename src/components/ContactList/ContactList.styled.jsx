@@ -33,7 +33,7 @@ export const Number = styled.span`
   text-align: right;
 
   font-weight: 400;
-  font-size: 22px;
+  font-size: 18px;
   color: var(--accent);
   flex-basis: 33.333%;
 `;

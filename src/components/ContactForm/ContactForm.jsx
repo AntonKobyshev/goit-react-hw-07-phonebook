@@ -37,7 +37,7 @@ const schema = yup.object().shape({
       'Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d`Artagnan'
     )
     .required(),
-  number: yup
+  phone: yup
     .string()
     .trim()
     .matches(
@@ -50,7 +50,7 @@ const schema = yup.object().shape({
 const initialValues = {
   id: '',
   name: '',
-  number: '',
+  phone: '',
 };
 
 export const ContactForm = () => {
@@ -61,7 +61,7 @@ export const ContactForm = () => {
     const newContact = {
       id: 'id-' + nanoid(),
       name: values.name,
-      number: values.number,
+      phone: values.phone,
     };
 
     if (
@@ -118,19 +118,19 @@ export const ContactForm = () => {
           </Wrapper>
 
           <Wrapper>
-            <Label htmlFor="number">
+            <Label htmlFor="phone">
               <BsFillTelephoneFill size="20" />
               Number:
             </Label>
             <Input
-              name="number"
+              name="phone"
               type="tel"
-              id="number"
+              id="phone"
               pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
               title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
               required
             />
-            <ErrorMsg name="number" component="div" />
+            <ErrorMsg name="phone" component="div" />
           </Wrapper>
 
           <Btn type="submit">
