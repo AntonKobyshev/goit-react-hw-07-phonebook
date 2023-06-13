@@ -29,22 +29,8 @@ const notifyOptions = {
 };
 
 const schema = yup.object().shape({
-  name: yup
-    .string()
-    .trim()
-    .matches(
-      /^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$/,
-      'Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d`Artagnan'
-    )
-    .required(),
-  phone: yup
-    .string()
-    .trim()
-    .matches(
-      /\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}/,
-      'Phone number must be digits and can contain spaces, dashes, parentheses and can start with +'
-    )
-    .required(),
+  name: yup.string().min(2).max(70).required(),
+  phone: yup.number().min(4).required(),
 });
 
 const initialValues = {
@@ -66,9 +52,7 @@ export const ContactForm = () => {
 
     if (
       contacts.find(
-        contact =>
-          contact.name.toLowerCase().trim() ===
-          newContact.name.toLowerCase().trim()
+        contact => contact.name.toLowerCase() === newContact.name.toLowerCase()
       )
     ) {
       return toast.error(
@@ -77,13 +61,9 @@ export const ContactForm = () => {
       );
     }
 
-    if (
-      contacts.find(
-        contact => contact.number.trim() === newContact.number.trim()
-      )
-    ) {
+    if (contacts.find(contact => contact.phone === newContact.phone)) {
       return toast.error(
-        `The number ${newContact.number} is already in contacts`,
+        `The number ${newContact.phone} is already in contacts`,
         notifyOptions
       );
     }
@@ -126,7 +106,7 @@ export const ContactForm = () => {
               name="phone"
               type="tel"
               id="phone"
-              pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
+              attern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
               title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
               required
             />
