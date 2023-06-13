@@ -1,7 +1,7 @@
 import { Formik } from 'formik';
 import { useSelector, useDispatch } from 'react-redux';
 import { getContacts } from 'redux/selectors';
-import { addContact } from 'redux/contactsSlice';
+import { addContact } from 'redux/operations';
 import * as yup from 'yup';
 import { nanoid } from 'nanoid';
 import { ToastContainer, toast } from 'react-toastify';
